@@ -101,17 +101,17 @@ ul.songs li{
     margin: 10px 0;
 }
 
-.cantainer {
+.container {
     margin: 30px auto;
     max-width: 100%;
     width: 500px;
 }
 
-.cantainer h2{
+.container h2{
     font-weight: 300;
 }
 
-.cantainer h2{
+.container p{
     text-align: center;
 }
 
