@@ -44,6 +44,24 @@ function showData(data) {
     }
 }
 
+async function getLyrics(artist, song){
+    const res = await fetch(`${apiURL}/v1/${artist}/${song}`);
+    const data = await res.json();
+
+    const lyrics = data.lyrics.replace(/(\r\n|\r|\n)/g, '<br>');
+
+    result.innerHTML = `
+        <h2>
+            <strong>${artist}</strong> - ${song}
+            
+        </h2>
+        <span>${lyrics}</span>
+    `;
+
+    more.innerHTML = '';
+
+}
+
 form.addEventListener('submit', e=>{
     e.preventDefault();
     const searchTerm = search.value.trim();
@@ -51,5 +69,16 @@ form.addEventListener('submit', e=>{
         alert('Please type in a ssearch term');
     } else {
         seachSongs(searchTerm);
+    }
+});
+
+result.addEventListener('click', e=>{
+    const clickEl = e.target;
+
+    if(clickEl.tagName === 'BUTTON'){
+        const artist = clickEl.getAttribute('data-artist');
+        const song = clickEl.getAttribute('data-songtitle');
+
+        getLyrics(artist, song);
     }
 });
